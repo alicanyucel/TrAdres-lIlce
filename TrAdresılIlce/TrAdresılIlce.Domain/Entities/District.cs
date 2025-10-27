@@ -2,7 +2,7 @@ using TrAdresýlIlce.Domain.Abstractions;
 
 namespace TrAdresýlIlce.Domain.Entities
 {
-    public sealed class District : Entity<int>
+    public sealed class District : Entity
     {
         public string Name { get; set; } = null!;
 

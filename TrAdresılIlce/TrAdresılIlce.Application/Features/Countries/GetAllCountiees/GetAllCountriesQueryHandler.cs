@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using TrAdresılIlce.Application.Extensions;
 using TrAdresılIlce.Domain.Repositories;
 
 namespace TrAdresılIlce.Application.Features.Countries.GetAllCountiees;
@@ -20,9 +19,8 @@ public sealed class GetAllCountriesQueryHandler
     {
         var countries = await _countryRepository.GetAllAsync(cancellationToken);
 
-        return countries.Select(country =>
-        new GetAllCountriesQueryResponse(country.Id, country.Name)
-       ).ToList();
-
+        return countries
+            .Select(country => new GetAllCountriesQueryResponse(country.Id, country.Name))
+            .ToList();
     }
 }

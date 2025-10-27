@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TrAdresılIlce.Application.Features.Countries.GetAllCountiees;
 using TrAdresılIlce.Application.Features.Countries.SetCoutries;
+using TrAdresılIlce.Domain.Entities;
 using TrAdresılIlce.WebAPI.Abstractions;
 
 namespace TrAdresılIlce.WebAPI.Controllers;
@@ -27,4 +28,6 @@ public class LocationsController : ApiController
         var result = await _mediator.Send(request, cancellationToken);
         return Ok(new { success = true, message = "Countries listed.", data = result });
     }
+
+  
 }

@@ -2,16 +2,9 @@
 
 namespace TrAdresılIlce.Domain.Abstractions
 {
-    public abstract class Entity<TKey>
+    public abstract class Entity
     {
         [Key]
-        public TKey Id { get; set; } = default!;
-        protected Entity()
-        {
-            if (typeof(TKey) == typeof(Guid))
-            {
-                Id = (TKey)(object)Guid.NewGuid();
-            }
-        }
+        public int Id { get; set; }
     }
 }
