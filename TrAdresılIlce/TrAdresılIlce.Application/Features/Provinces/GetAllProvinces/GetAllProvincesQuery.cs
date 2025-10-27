@@ -1,12 +1,6 @@
-﻿using System;
+﻿using MediatR;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace TrAdresılIlce.Application.Features.Provinces.GetAllProvinces
-{
-    internal class GetAllProvincesQuery
-    {
-    }
-}
+namespace TrAdresılIlce.Application.Features.Provinces.GetAllProvinces;
+
+public sealed record GetAllProvincesQuery() : IRequest<List<GetAllProvincesQueryResponse>>;

@@ -26,23 +26,25 @@ public sealed class SetCountryCommandHandler : IRequestHandler<SetCountryCommand
 
         var exists = await _countryRepository.ExistsAsync(name, code, cancellationToken);
         if (exists)
-            return Result<string>.Failure("Türkiye zaten kayıtlı.");
+            return Result<string>.Succeed("Türkiye zaten ekli.");
 
-        var country = new Country { Name = name, Code = code };
+        // Insert with explicit Id = 1 using IDENTITY_INSERT
+        var country = new Country { Id = 1, Name = name, Code = code };
 
+        var db = (DbContext)_unitOfWork;
+        using var tx = await db.Database.BeginTransactionAsync(cancellationToken);
         try
         {
+            await db.Database.ExecuteSqlRawAsync("SET IDENTITY_INSERT [Countries] ON;", cancellationToken);
             await _countryRepository.AddAsync(country, cancellationToken);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
+            await db.Database.ExecuteSqlRawAsync("SET IDENTITY_INSERT [Countries] OFF;", cancellationToken);
+            await tx.CommitAsync(cancellationToken);
             return Result<string>.Succeed("Türkiye başarıyla eklendi.");
-        }
-        catch (DbUpdateException ex)
-        {
-            var message = ex.InnerException?.Message ?? ex.Message;
-            return Result<string>.Failure($"Kaydetme hatası: {message}");
         }
         catch (Exception ex)
         {
+            await tx.RollbackAsync(cancellationToken);
             return Result<string>.Failure($"Hata: {ex.Message}");
         }
     }

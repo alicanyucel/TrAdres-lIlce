@@ -6,7 +6,8 @@ public static class CountryConstants
 {
     public static readonly Country Türkiye = new()
     {
+        Id = 1,
         Name = "Türkiye",
-        Code="Tr"
+        Code = "Tr"
     };
 }
