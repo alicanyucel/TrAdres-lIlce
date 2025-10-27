@@ -11,7 +11,9 @@ namespace TrAdresılIlce.Infrastructure.Context
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
         }
-
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<Province> Provinces { get; set; }
+        public DbSet<District> Districts { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(typeof(DependencyInjection).Assembly);
