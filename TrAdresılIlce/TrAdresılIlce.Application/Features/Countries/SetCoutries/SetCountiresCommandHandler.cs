@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using GenericRepository;
+using MediatR;
+using TrAdresılIlce.Domain.Entities;
+using TrAdresılIlce.Domain.Repositories;
+using TS.Result;
 
-namespace TrAdresılIlce.Application.Features.Countries.SetCoutries
+namespace TrAdresılIlce.Application.Features.Countries.SetCoutries;
+
+internal sealed class SetCountryComamndHandler(ICountryRepository countryRepository, IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<SetCountryCommand, Result<string>>
 {
-    internal class SetCountiresCommandHandler
+    public async Task<Result<string>> Handle(SetCountryCommand request, CancellationToken cancellationToken)
     {
+        Country country = mapper.Map<Country>(request);
+        await countryRepository.AddAsync(country, cancellationToken);
+        await unitOfWork.SaveChangesAsync(cancellationToken);
+        return "Ülke kaydı yapıldı";
     }
 }

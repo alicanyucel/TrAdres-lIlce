@@ -1,11 +1,17 @@
-﻿namespace TrAdresılIlce.Domain.Abstractions
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace TrAdresılIlce.Domain.Abstractions
 {
-    public abstract class Entity
+    public abstract class Entity<TKey>
     {
-        public Guid Id { get; set; }
+        [Key]
+        public TKey Id { get; set; } = default!;
         protected Entity()
         {
-            Id = Guid.NewGuid();
+            if (typeof(TKey) == typeof(Guid))
+            {
+                Id = (TKey)(object)Guid.NewGuid();
+            }
         }
     }
 }

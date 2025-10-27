@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GenericRepository;
+using TrAdresılIlce.Domain.Entities;
 
-namespace TrAdresılIlce.Domain.Repositories
+namespace TrAdresılIlce.Domain.Repositories;
+
+public interface IDistrictRepository : IRepository<District>
 {
-    internal interface IDistrictRepository
-    {
-    }
 }

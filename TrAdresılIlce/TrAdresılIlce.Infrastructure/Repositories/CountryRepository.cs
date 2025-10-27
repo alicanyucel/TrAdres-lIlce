@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GenericRepository;
+using TrAdresılIlce.Domain.Entities;
+using TrAdresılIlce.Domain.Repositories;
+using TrAdresılIlce.Infrastructure.Context;
 
-namespace TrAdresılIlce.Infrastructure.Repositories
+internal sealed class CountryRepository : Repository<Country, ApplicationDbContext>, ICountryRepository
 {
-    internal class CountryRepository
+    public CountryRepository(ApplicationDbContext context) : base(context)
     {
     }
+
+   
 }

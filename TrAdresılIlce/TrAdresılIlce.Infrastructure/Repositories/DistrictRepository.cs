@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GenericRepository;
+using TrAdresılIlce.Domain.Entities;
+using TrAdresılIlce.Domain.Repositories;
+using TrAdresılIlce.Infrastructure.Context;
 
-namespace TrAdresılIlce.Infrastructure.Repositories
+namespace TrAdresılIlce.Infrastructure.Repositories;
+
+internal sealed class DistrictRepository : Repository<District, ApplicationDbContext>, IDistrictRepository
 {
-    internal class DistrictRepository
+    public DistrictRepository(ApplicationDbContext context) : base(context)
     {
+
     }
 }

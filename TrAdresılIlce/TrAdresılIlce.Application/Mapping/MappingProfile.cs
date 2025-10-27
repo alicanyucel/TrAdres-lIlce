@@ -1,12 +1,13 @@
 ﻿using AutoMapper;
+using TrAdresılIlce.Application.Features.Countries.SetCoutries;
+using TrAdresılIlce.Domain.Entities;
 
-namespace TrAdresılIlce.Application.Mapping
+namespace TrAdresılIlce.Application.Mapping;
+
+public sealed class MappingProfile : Profile
 {
-    public sealed class MappingProfile : Profile
+    public MappingProfile()
     {
-        public MappingProfile()
-        {
-
-        }
+        CreateMap<Country, SetCountryCommand>().ReverseMap();    
     }
 }
