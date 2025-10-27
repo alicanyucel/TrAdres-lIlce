@@ -20,4 +20,8 @@
     <ProjectReference Include="..\TrAdresılIlce.Domain\TrAdresılIlce.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Features\Countries\GetAllCountiees\GetAllCountriesQuery.cs" />
+  </ItemGroup>
+
 </Project>
