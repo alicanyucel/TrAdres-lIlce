@@ -1,20 +1,16 @@
-# See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images faster.
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-
-COPY ["TrAdresýlIlce/TrAdresýlIlce.WebAPI/TrAdresýlIlce.WebAPI.csproj", "TrAdresýlIlce/TrAdresýlIlce.WebAPI/"]
-COPY ["TrAdresýlIlce/TrAdresýlIlce.Application/TrAdresýlIlce.Application.csproj", "TrAdresýlIlce/TrAdresýlIlce.Application/"]
-COPY ["TrAdresýlIlce/TrAdresýlIlce.Domain/TrAdresýlIlce.Domain.csproj", "TrAdresýlIlce/TrAdresýlIlce.Domain/"]
-COPY ["TrAdresýlIlce/TrAdresýlIlce.Infrastructure/TrAdresýlIlce.Infrastructure.csproj", "TrAdresýlIlce/TrAdresýlIlce.Infrastructure/"]
-RUN dotnet restore "TrAdresýlIlce/TrAdresýlIlce.WebAPI/TrAdresýlIlce.WebAPI.csproj"
-
+COPY ["TrAdresÃ½lIlce/TrAdresÃ½lIlce.WebAPI/TrAdresÃ½lIlce.WebAPI.csproj", "TrAdresÃ½lIlce/TrAdresÃ½lIlce.WebAPI/"]
+COPY ["TrAdresÃ½lIlce/TrAdresÃ½lIlce.Application/TrAdresÃ½lIlce.Application.csproj", "TrAdresÃ½lIlce/TrAdresÃ½lIlce.Application/"]
+COPY ["TrAdresÃ½lIlce/TrAdresÃ½lIlce.Domain/TrAdresÃ½lIlce.Domain.csproj", "TrAdresÃ½lIlce/TrAdresÃ½lIlce.Domain/"]
+COPY ["TrAdresÃ½lIlce/TrAdresÃ½lIlce.Infrastructure/TrAdresÃ½lIlce.Infrastructure.csproj", "TrAdresÃ½lIlce/TrAdresÃ½lIlce.Infrastructure/"]
+RUN dotnet restore "TrAdresÃ½lIlce/TrAdresÃ½lIlce.WebAPI/TrAdresÃ½lIlce.WebAPI.csproj"
 COPY . .
-WORKDIR /src/TrAdresýlIlce/TrAdresýlIlce.WebAPI
+WORKDIR /src/TrAdresÃ½lIlce/TrAdresÃ½lIlce.WebAPI
 RUN dotnet publish -c Release -o /app/publish /p:UseAppHost=false
-
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 EXPOSE 8080
 ENV ASPNETCORE_URLS=http://+:8080
 COPY --from=build /app/publish .
-ENTRYPOINT ["dotnet", "TrAdresýlIlce.WebAPI.dll"]
+ENTRYPOINT ["dotnet", "TrAdresÃ½lIlce.WebAPI.dll"]
